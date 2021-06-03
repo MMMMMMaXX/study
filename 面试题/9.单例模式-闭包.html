@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>单例模式-闭包</title>
+
+
+
+</head>
+
+<body>
+    <button id="loginBtn">登录</button>
+    <script>
+
+        var createLogin = function (a, b, c) {
+            console.log(a, b, c);
+            var div = document.createElement("div")
+            div.innerHTML = '我是登录的弹窗'
+            div.style.display = 'none'
+            document.body.appendChild(div)
+            return div
+        }
+        // 调用回调函数 定义:函数的名字作为另外一个函数的参数传入，叫做回调函数
+        var getSingle = function (fn) {
+            var result;
+            return function () {
+                // (result = fn.apply(this,arguments)当调用create函数有参数时 arguments 参数的集合 类数组对象
+                return result || (result = fn.apply(this, arguments))
+            }
+        }
+        var create = getSingle(createLogin)
+        document.getElementById("loginBtn").onclick = function () {
+            var loginLay = create(1, 2, 3)
+            loginLay.style.display = 'block'
+        }
+
+    </script>
+</body>
+
+</html>

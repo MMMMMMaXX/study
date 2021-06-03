@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 箭头函数中的this是在定义函数的时候绑定，而不是在执行函数的时候绑定 */
+        /* 箭头函数中，this指向固定化，
+        
+        并不是因为箭头函数内部有绑定this的机制，
+        实际原因是箭头函数根本没有自己的this，导致内部的this就是外层代码块的this。
+
+        正式因为他没有this，所以也就不能作构造函数 
+        */
+        /* 箭头函数中的this是在定义函数的时候绑定 */
+
+        /* 
+        所谓定义时候绑定，就是this是继承自父执行上下文中的this（函数所处上下文中的this）
+        
+        这里的箭头函数中的this.x，箭头函数本身与key同级以key：value的形式
+        也就是箭头函数本身所在的对象为obj，而obj的父执行上下文就是window，
+        因此这里的this.x实际上表示的是window.x，因此输出为11 */
+
+        /* 箭头函数中没有arguments（类数组），只能基于...arg获取传递的参数集合 */
+        var x = 11;
+        var obj = {
+            x: 22,
+            say: () => {
+                console.log(this.x);    //11
+            }
+        }
+        obj.say();
+
+        /* 箭头函数本身实在getAge方法中定义的，因此，getAge方法的父执行上下文是obj，因此这里的this指向则为obj对象 */
+        var obj = {
+            birth: 2000,
+            getAge:function (){
+                var b = this.birth;
+                var fn = () => b=new Date().getFullYear() - this.birth;
+                // this指向obj对象
+                return fn();
+            }
+        };
+        console.log(obj.getAge());  //21
+        /* 
+        箭头函数与普通函数的区别
+        1.箭头函数语法上比普通函数更加简洁（ES6中每一种函数都可以使用形参赋默认值和剩余运算符）
+          剩余运算符：其功能与扩展运算符恰好相反，把逗号隔开的值序列组合成一个数组。当三个点(…)在等号左边，或者放在形参上，为 rest 运算符（剩余运算符）
+        2.箭头函数没有自己的this，他里面的this是继承函数所处上下文中的this（使用call/apply等任何方式都无法改变this的指向）
+        3.箭头函数中没有arguments（类数组），只能基于...arg获取传递的参数集合（数组）
+        4.箭头函数不能被new执行 不能作为构造函数（因为：箭头函数没有this也没有prototype（原型））
+        */
+    </script>
+</body>
+
+</html>

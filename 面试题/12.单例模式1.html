@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>单例模式1</title>
+</head>
+
+<body>
+    <button id="button">登录</button>
+    <script>
+        /* 
+        单例模式
+        定义：1.只有一个实例 2.可以全局的访问
+        主要解决：一个全局使用的类 频繁的创建和销毁
+        何时使用：当你想控制实例的数目 节省系统化资源的时候
+        如何实现：判断系统是否已经有这个单例 如果有则返回 没有则创建
+        单例模式优点： 内存中只要一个实例 减少了内存的开销 尤其是频繁的创建和销毁实例（比如说是首页页面的缓存）
+         */
+        /* es5  实现一个登录的弹窗 */
+        // 1. 加载完成的时候 已经创建好这个弹窗 一开始是隐藏的状态
+        // var loginLayer = (function(){
+        //     var div = document.createElement('div');
+        //     div.innerHTML = '我是登录的弹窗';
+        //     div.style.display = 'none';
+        //     document.body.appendChild(div);
+        //     return div;
+        // })()
+        // document.getElementById('button').onclick = function(){
+        //     loginLayer.style.display = 'block';
+        // }       
+        // 缺点 资源的浪费
+
+
+        // 2. 点击时创建
+        // document.getElementById('button').onclick = function () {
+        //     var loginLayer = creatloginLayer();
+        //     loginLayer.style.display = 'block';
+        // }
+        // var creatloginLayer = function () {
+        //     var div = document.createElement('div');
+        //     div.innerHTML = '我是登录的弹窗';
+        //     div.style.display = 'none';
+        //     document.body.appendChild(div);
+        //     return div;
+        // }
+        // 缺点 每次点击都创建
+
+
+        // 3. 单例模式 判断系统是否已经有这个单例 如果有则返回 没有则创建
+        // 立即执行函数模式是一种语法，可以让你的函数在定义后立即被执行。
+        var creatloginLayer = (function () {
+            var div;
+            return function () {
+                if (!div) {
+                    div = document.createElement('div');
+                    div.innerHTML = '我是登录的弹窗';
+                    div.style.display = 'none';
+                    document.body.appendChild(div);
+                    return div;
+                }
+                return div;
+            } 
+        })()
+        document.getElementById('button').onclick = function () {
+            var loginLayer = creatloginLayer();
+            loginLayer.style.display = 'block';
+        }
+
+
+        // 4. 把形成单例从代码中抽离出来
+        // 单例职责
+        var getSingle = function(fn){
+            var result;
+            return function(){
+                return result || (result = fn.apply(this,arguments))
+            }
+        }
+        // 创建登录框的职责
+        var createLoginLayer = function(){
+            var div = document.createElement('div');
+            div.innerHTML = '我是登陆的弹窗';
+            div.style.display = 'none';
+            document.body.appendChild(div);
+            return div;
+        }
+        var createSingleLogin = getSingle(createLoginLayer)
+        document.getElementById('button').onclick = function(){
+            var loginLayer = createSingleLogin();
+            loginLayer.style.display = 'block';
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,89 @@
+1. 路由懒加载
+    const router = new vueRouter({
+    routes:[
+    {path:'/foo',component:() => import('./Foo.vue')}
+    ]
+    })
+
+
+2. keep-alive缓存页面
+    <template>
+      <div id="app">
+        <keep-alive>
+          <route-view />
+        </keep-alive>
+      </div>
+    </template>
+
+3. 使用v-show复用DOM
+    v-if是完全删除与新增，v-show是通过display设置隐藏或显示
+    <template>
+      <div class="cell">
+        这种情况用v-show复用DOM，比v-if效果好
+        <div v-show="value" class="on">
+          <Heavy :n="10000" />
+        </div>
+        <div v-show="!value" class="off">
+          <Heavy :n="10000" />
+        </div>
+      </div>
+    </template>
+
+4. v-for遍历避免同时使用v-if
+    使用计算属性进行过滤
+    <template>
+      <ul>
+        <li v-for="user in activeUsers" :key="user.id">{{user.name}}</li>
+      </ul>
+    </template>
+    <script>
+      export default (
+        computed: {
+          activeUsers: function () {
+            return this.users.filter(function (user) {
+              return user.isActive
+            })
+              }
+            }
+          )
+    </script>
+
+5. 长列表性能优化
+    如果列表是纯粹的数据展示，不会有任何改变，就不需要做响应化
+    如果是大数据长列表，可采用虚拟滚动，DOM进行更新和复用，只渲染少部分区域的内容（vue-virtual-scroller库）
+
+6. 事件销毁
+    Vue组件销毁时，会自动解绑他的全部指令及事件监听器，但是仅限于组件本身的事件
+    建议组件内编写的定时器手动clearTnterval()清除
+
+7. 图片懒加载
+    对于图片过多的页面，为了加速页面加载速度，所以很多时候我们需要将页面内未出现在可视区域内的图片先不做加载，等到滚动到可视区域再去加载
+    <img v-lazy="......">(vue-lazyload库)
+
+8. 第三方插件按需引入
+    按需引入，避免体积太大
+
+9. 无状态的展示型组件标记为函数式组件 因为没有组件实例所以消耗资源较少
+    <template function>
+      ......
+    </template>
+    <script>
+      ...... 
+    </script>
+
+10. 子组件分割
+    子组件有比较耗时的任务，把他切割成独立的子树，让他自己管自己的渲染
+    <template>
+      <div>
+        <childComp/>
+      </div>
+    </template>
+    <script>
+    export default{
+      components:{
+        childComp:{
+          ......
+        }
+      }
+    }
+    </script>

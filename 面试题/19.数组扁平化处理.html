@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数组扁平化</title>
+</head>
+
+<body>
+    <script>
+        /* 
+        数组扁平化 把多维数组转化为一维数组
+        */
+        const arr = [1, [2, [3, [4, 5]]], 6];//=>[1,2,3,4,5,6]
+
+        // 1.用数组自带的扁平化的方法 Infinity 正无穷 表示数组层数 可以换成整数
+        console.log(arr.flat(Infinity));
+
+        // 2.利用正则表达式
+        const res2 = JSON.stringify(arr).replace(/\[|\]/g, '')
+        console.log(res2.split(','));
+
+        // 3.正则改良版
+        const res3 = JSON.parse('[' + res2 + ']')
+        console.log(res3);
+
+        // 4.递归实现 
+        /* 
+        新建一个数组
+        对arr进行遍历
+        */
+        const array = []
+        const fn = (arr) => {
+            for (let i = 0; i < arr.length; i++) {
+                if (Array.isArray(arr[i])) {
+                    fn(arr[i])
+                } else {
+                    array.push(arr[i])
+                }
+            }
+        }
+        fn(arr);
+        console.log(array);
+
+        // 5.reduce方法
+        /* 
+        arr.reduce(function(prev,cur,index,arr){
+
+        }, init);
+        // 或者
+        arr.reduce(function(prev,cur,index,arr){
+
+        },);
+
+        arr 表示将要原数组
+        prev 表示上一次调用回调时的返回值，或者初始值init
+        cur 表示当前正在处理的数组元素
+        index 表示当前正在处理的数组元素的索引，若提供init值，则索引为0，否则索引为1
+        init 表示初始值
+
+        常用的参数只有两个：prev、cur
+        */
+       const newArr = (arr) => {
+           return arr.reduce((pre,cur) => {
+            //   console.log(pre,cur);
+               return pre.concat(Array.isArray(cur)?newArr(cur):cur)
+           },[])
+       }
+       console.log(newArr(arr));
+    </script>
+</body>
+
+</html>

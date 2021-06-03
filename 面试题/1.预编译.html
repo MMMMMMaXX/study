@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>预编译</title>
+</head>
+<body>
+    <script>
+        function fn(a,c){
+            console.log(a);     //function a(){}
+            var a = 123;
+            console.log(a);     //123
+            console.log(c);     //function c(){}
+            function a(){}
+            if(false){
+                // 未进入条件分支 但仍会创建变量d 只是不会赋值
+                var d = 678;
+            }
+            console.log(d);     //undefined
+            console.log(b);     //undefined
+            var b = function(){}
+            console.log(b);     //function (){}
+            function c(){}
+            console.log(c);     //function c(){}
+            
+        }
+        fn(1,2);
+
+        // 预编译
+        // 作用域的创建阶段 预编译的阶段
+        // 预编译做了哪些事情
+        // js的变量对象 AO对象 供js引擎自己去访问的 
+
+        // 函数作用域预编译
+        // 1. 创建AO对象 AO{}
+        // 2. 找 形参 和 变量 的声明 作为AO对象的属性名 值为undefined
+        // 3. 实参与形参相统一
+        // 4. 找函数声明 会 覆盖变量 的声明 值赋予函数体
+
+        // 全局作用域的预编译
+        // 1. 创建GO对象
+        // 2. 找变量的声明 将变量名作为GO对象的属性名 值为undefined
+        // 3. 找函数声明 值赋予函数体
+
+    </script>
+</body>
+</html>

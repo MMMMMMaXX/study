@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // a定义
+        function a(){
+            var aa = 123;
+            function b(){
+                var bb = 456;
+                console.log(aa);
+            }
+            return b;
+        }
+        // a执行->b定义->a销毁
+        var res = a();
+        // b执行
+        // b函数被保存在外部，b函数scope内仍有a函数的AO，产生闭包
+        res();
+    </script>
+</body>
+</html>

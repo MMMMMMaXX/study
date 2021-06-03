@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>reduct</title>
+</head>
+
+<body>
+    <script>
+        /* 
+        arr.reduce(function(prev,cur,index,arr){
+
+        }, init);
+        // 或者
+        arr.reduce(function(prev,cur,index,arr){
+
+        },);
+
+        arr 表示将要原数组
+        prev 表示上一次调用回调时的返回值，或者初始值init
+        cur 表示当前正在处理的数组元素
+        index 表示当前正在处理的数组元素的索引，若提供init值，则索引为0，否则索引为1
+        init 表示初始值
+
+        常用的参数只有两个：prev、cur
+        */
+        // 求和
+        var arr = [10, 2, 3, 4, 3, 2, 1, 5, 6, 6, 6];
+        var sum = arr.reduce((pre, cur) => { return pre + cur })
+        console.log(sum);
+
+        // 计算数组中每个元素出现的个数
+        let arrNum = arr.reduce((pre, cur) => {
+            if (cur in pre) {
+                pre[cur]++;
+            } else {
+                pre[cur] = 1;
+            }
+            return pre
+        }, {})
+        console.log(arrNum);
+
+        // 数组去重
+        let arrDone = arr.reduce((pre,cur) => {
+            if(!pre.includes(cur)){
+                return pre.concat(cur)
+            }else{
+                return pre;
+            }
+        },[])
+        console.log(arrDone);
+    </script>
+</body>
+
+</html>

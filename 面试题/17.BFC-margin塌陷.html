@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>margin塌陷</title>
+    <style>
+        .father{
+            width: 220px;
+            height: 300px;
+            background-color: aqua;
+            /* 不形成BFC：father盒子没设置上边距但却有上边距 */
+            overflow: hidden;
+        }
+        .son{
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- BFC可以取消盒子margin塌陷 -->
+    <div class="father">
+        <div class="son"></div>
+    </div>
+</body>
+</html>

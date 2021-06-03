@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作用域</title>
+</head>
+
+<body>
+    <script>
+        ////////// 作用域说明：一般理解指一个变量的作用范围
+        /* 
+        全局作用域
+        1.全局作用域在网页打开时被创建，页面关闭时被销毁
+        2.编写在script标签中的变量和函数，作用域为全局，在页面的任意位置都可以访问到
+        3.在全局作用域中有全局对象window，代表一个浏览器窗口，由浏览器创建，可以直接调用
+        4.全局作用域中声明的变量和函数会作为window对象的属性和方法保存
+        */
+
+        /* 
+        函数作用域
+        1.调用函数时，函数作用域被创建，函数执行完毕吗，函数作用域被销毁
+        2.每调用一次函数就会创建一个新的函数作用域，他们之间是相互独立的
+        3.在函数作用域中可以访问到全局作用域中的变量，在函数外无法访问到函数作用域内的变量
+        4.在函数作用域中访问变量、函数时，会现在自身作用域中寻找，若没有找到，则会到函数的上一级作用域中寻找，一直到全局作用域
+        */
+
+        ////////// 作用域的深层次理解
+        /* 
+        执行期的上下文
+        当函数代码执行的前期 会创建一个执行期上下文的内部对象 AO （作用域）
+        这个内部的对象是预编译的时候创建出来的 因为当函数被调用的时候 会先进性预编译
+        在全局代码执行的前期会创建一个执行期的上下文对象 GO
+        */
+        function fn(a, c) {
+            console.log(a);     //function a(){}
+            var a = 123;
+            console.log(a);     //123
+            console.log(c);     //function c(){}
+            function a() { }
+            if (false) {
+                // 未进入条件分支 但仍会创建变量d 只是不会赋值
+                var d = 678;
+            }
+            console.log(d);     //undefined
+            console.log(b);     //undefined
+            var b = function () { }
+            console.log(b);     //function (){}
+            function c() { }
+            console.log(c);     //function c(){}
+        }
+        fn(1, 2);
+    </script>
+</body>
+
+</html>
