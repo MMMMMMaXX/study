@@ -32,7 +32,7 @@
         对arr进行遍历
         */
         const array = []
-        const fn = (arr) => {
+        const fn = arr => {
             for (let i = 0; i < arr.length; i++) {
                 if (Array.isArray(arr[i])) {
                     fn(arr[i])
@@ -62,7 +62,7 @@
 
         常用的参数只有两个：prev、cur
         */
-       const newArr = (arr) => {
+       const newArr = arr => {
            return arr.reduce((pre,cur) => {
             //   console.log(pre,cur);
                return pre.concat(Array.isArray(cur)?newArr(cur):cur)

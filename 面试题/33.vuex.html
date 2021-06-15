@@ -1,13 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://vuejs.org/js/vue.min.js"></script>
+    <style>
+        body,
+        html {
+            width: 100%;
+            height: 100%;
+            /* 去掉滚动条 */
+            margin: 0;
+        }
+
+        .container {
+            width: 100%;
+            height: 100%;
+            /* background: lightseagreen; */
+            display: grid;
+            /* 两栏布局 */
+            /* grid-template-columns: 70% 30%; */
+            /* 三栏布局，中间自适应,将左右两栏写死，中间设置1fr自适应分配即可 */
+            grid-template-columns: 1fr 1fr 1fr;
+            /*不写默认是100%,子元素默认撑满单元格高度 */
+            /* grid-template-rows: 100px; */
+            column-gap: 10px;
+        }
+
+        .left {
+            background: skyblue;
+        }
+
+        .right {
+            background: rebeccapurple;
+        }
+
+        .con {
+            background: orange;
+        }
+    </style>
 </head>
+
 <body>
-    
+
+
+
+
+    <div class="container">
+        <div class="left"></div>
+        <div class="con"></div>
+        <div class="right"></div>
+    </div>
+
+
 </body>
+
 </html>

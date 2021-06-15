@@ -40,9 +40,9 @@
 
         // 求数组里面的最大值
         let arr1 = [1, 2, 3, 4, 15, 6, 7, 8, 9];
-        console.log(Math.max.call(null,1, 2, 3, 4, 15, 6, 7, 8, 9));    //19
+        console.log(Math.max.call(null,1, 2, 3, 4, 15, 6, 7, 8, 9));    //15
         console.log(Math.max.call(null,arr1));      //NaN
-        console.log(Math.max.apply(null,arr1));     //19
+        console.log(Math.max.apply(null,arr1));     //15
 
         // 1. 应用 将伪数组转化成数组
         // 2. 让arguments使用数组方法
