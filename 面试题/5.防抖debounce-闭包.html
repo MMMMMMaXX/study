@@ -20,7 +20,7 @@
         var input = document.getElementById('input');
         // 防抖函数
         // callback回调函数
-        function debounce(delay,callback) {
+        function debounce(delay,func) {
             let timer;
             
             return function (value) {
@@ -37,7 +37,7 @@
                 timer = setTimeout(function () {
                     // 想让结果不在这里输出 而是在外，面输出
                     // console.log(value);
-                    callback(value);
+                    func(value);
                 },delay)
             }
 

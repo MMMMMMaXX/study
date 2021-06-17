@@ -9,7 +9,7 @@
 <body>
     <script>
         function Parent(name){
-            this.name = [name]
+            this.name = name
         }
         Parent.prototype.getName = function(){
             return this.name
@@ -31,7 +31,7 @@
         Child.prototype.constructor = Child
         const child1 = new Child()
         const child2 = new Child()
-        child1.name[0] = '鹿晗'
+        child1.name = '鹿晗'
         console.log(child1.name);
         console.log(child2.name);
         console.log(child2.getName());

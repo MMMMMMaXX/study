@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>原型链的继承</title>
 </head>
+
 <body>
     <script>
         function Parent(){
@@ -30,9 +32,28 @@
         console.log(child2.name);
         console.log(child2.getName());
 
+
+        /* function Father(name) {
+            this.name = name;
+        }
+        Father.prototype.getName = function () {
+            return this.name;
+        }
+        Father.height = 180;
+        function Son(name) {
+
+        }
+        Son.prototype = new Father('hhh');
+        Son.prototype.constructor = Son;
+        var son = new Son('hhh');
+        console.log(son.name);
+        console.log(son.height);
+        console.log(son.getName()); */
+
         // 原型链继承缺点：
         // 多个实例指向同一个原型，一个实例改变了，另外的实例都会改变
         // 无法对父类进行传参（es6 super）
     </script>
 </body>
+
 </html>
