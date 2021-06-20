@@ -3,4 +3,4 @@ var result = arr.sort((a,b) => {
     return Math.random() * 2 - 1;
 });
 console.log(result);
-//
+// 

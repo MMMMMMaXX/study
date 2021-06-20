@@ -13,3 +13,4 @@ Son.prototype.constructor = Son;
 
 var son = new Son();
 console.log(son.name);
+
