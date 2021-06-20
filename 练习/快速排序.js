@@ -38,4 +38,5 @@ console.log(quickSort(arr));
 }
 
 var arr=[5,3,9,4,2,0]
-console.log(quickSort(arr)) */
+console.log(quickSort(arr)) 
+*/
