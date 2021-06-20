@@ -7,7 +7,7 @@ function sayName() {
 }
 
 var p = new Parent();
-sayName.call(p);
+sayName.call(p); 
 
 
 //https://github.com/mqyqingfeng/Blog
