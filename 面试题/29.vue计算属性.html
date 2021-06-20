@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://vuejs.org/js/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model='name1'>
+        <p>{{name1}}</p>
+        <p>{{message}}</p>
+        <p>reverse {{reverseMessage}}</p>
+        <p>reverse {{getMessage()}}</p>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data() {
+                return {
+                    message: 'hello',
+                    name1: '0'
+                }
+            },
+            /* 
+            计算属性
+            为什么要有计算属性
+            模板内的表达式非常便利，但是设计他们的初衷是用于简单运算的。
+            在模板中放入太多的逻辑会让模板过重难以维护
+            在这个模板里就不是简单的生命逻辑了 必须也需要一段时间才能看懂
+            所以任何复杂的逻辑都应该防灾计算属性中
+             */
+            computed: {
+                reverseMessage: function () {
+                    return this.message.split('').reverse().join('');
+                }
+                /* 
+                计算属性有get方法
+                上述相当于如下的简写
+                reverseMessage: {
+                    get: function () {
+                        return this.message.split('').reverse().join('');
+                    }
+                }
+                */
+            },
+            /* 
+            计算属性vs方法
+            可以实现相同的功能
+            计算属性有缓存的效果，当任意一个依赖的数据发生改变时，关联的数据才会重新求值，没有改变会返回之前的结果，不用再次执行函数
+            */
+            methods: {
+                getMessage() {
+                    return this.message.split('').reverse().join('');
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

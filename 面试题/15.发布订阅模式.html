@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // var shopObj = {}//定义发布者
+        // shopObj.list = [];//缓存列表 存放的是订阅的函数
+
+        // // 增加订阅者
+        // shopObj.listen = function (fn) {
+        //     shopObj.list.push(fn);
+        // }
+
+        // // 发布消息
+        // shopObj.trigger = function () {
+        //     for (var i = 0, fn; fn = this.list[i++];) {
+        //         fn.apply(this, arguments)
+        //     }
+        // }
+
+        // shopObj.listen(function (color, size) {
+        //     console.log(`颜色是${color}`);
+        //     console.log(`尺码是${size}`);
+        // })
+        // shopObj.listen(function (color, size) {
+        //     console.log(`再次颜色是${color}`);
+        //     console.log(`再次尺码是${size}`);
+        // })
+        // // 小红
+        // shopObj.trigger('red', 42)
+        // // 小明
+        // shopObj.trigger('black', 43)
+
+
+        var shopObj = {}//定义发布者
+        shopObj.list = []//缓存列表 存放的是订阅的函数
+
+        // 增加订阅者
+        shopObj.listen = function (key, fn) {
+            if (!this.list[key]) {
+                this.list[key] = [];
+            }
+            this.list[key].push(fn);
+        }
+
+        // 发布消息
+        shopObj.trigger = function () {
+            // 对应的key取出来
+            // arguments是一个类数组对象，并没有shift方法，通过call使用shift
+            var key = Array.prototype.shift.call(arguments);
+            var fns = this.list[key];
+            if (!fns || fns.length == 0) {
+                return
+            }
+            for (var i = 0, fn; fn = fns[i++];) {
+                fn.apply(this, arguments)
+                // fn(...arguments)
+            }
+        }
+
+        shopObj.listen('red', function (size) {
+            console.log(`尺码是${size}`);
+        })
+        shopObj.listen('black', function (size) {
+            console.log(`再次尺码是${size}`);
+        })
+        // 小红
+        shopObj.trigger('red', 42)
+        // 小明
+        shopObj.trigger('black', 43)
+
+    </script>
+</body>
+
+</html>

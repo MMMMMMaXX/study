@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // number string boolean undefined null
+        // object
+        var a = 123;
+        var obj = {};   //变量在栈中，对象在堆中
+        
+        var person = {
+            name: 'MX',
+            hobby: ['学习',['看电影','shooping'],'跑步'],
+        }
+        // 赋值
+        /* 当我们把一个对象赋值给一个新变量时，赋的其实是该对象的在栈中的地址，而不是堆中的数据。
+        也就是两个对象指向的是同一个人存储空间，无论哪个对象发生改变，其实都是改变的存储空间的内容，
+        因此，两个对象是联动的 */
+        // var person1 = person;
+        // person1.name = 'hhh';
+        // person1.hobby[0] = '玩'
+        // console.log(person);
+        // console.log(person1);
+        // 两个输出相同
+        
+
+        // 浅拷贝
+        /* 重新在堆中创建内存，
+        拷贝前后对象的基本数据类型互不影响，
+        但拷贝前后对象的引用类型因共用一块内存，会互相影响。 */
+        // function shallowCopy(obj){
+        //     var target = {}
+        //     for(var i in obj){
+        //         if(obj.hasOwnProperty(i)){
+        //             target[i] = obj[i]
+        //         }
+        //     }
+        //     return target
+        // }
+        // var person1 = shallowCopy(person);
+        // person1.name = '666'
+        // person1.hobby[0] = 'wan'
+        // console.log(person);
+        // console.log(person1);
+        // 两个输出name不同,hobby相同
+
+
+        // 深拷贝(递归实现)
+        /* 从堆内存中开辟一个新的区域存放对象,
+        对对象中的子对象进行递归拷贝,
+        拷贝前后的两个对象互不影响 */
+        // JSON.parse深拷贝缺点:不拷贝函数,正则表达式,日期。无法复制空值和undefined
+        function deepClone(obj){
+            var cloneObj = new obj.constructor()
+            if(obj === null) return obj;
+            // 判断obj是否属于Date(日期)类型或RegExp(正则表达式)类型
+            // instanceof 运算符用于检测构造函数的 prototype 属性是否出现在某个实例对象的原型链上。
+            // 语法 object instanceof constructor
+            if(obj instanceof Date) return new Date(obj)
+            if(obj instanceof RegExp) return new RegExp(obj)
+            // 递归出口
+            if(typeof obj !== 'object') return obj;
+            for(var i in obj){
+                if(obj.hasOwnProperty(i)){
+                    cloneObj[i] = deepClone(obj[i])
+                }
+            }
+            return cloneObj;
+        }
+        var person1 = deepClone(person);
+        person1.name = 'm'
+        person1.hobby[0] = 'w'
+        console.log(person);
+        console.log(person1);
+        // 两个输出name,hobby都不同
+
+
+        // 浅拷贝的实现方式
+        /* 
+        Object.assign()
+        ...
+        concat
+        lodash clone
+        */
+
+        // 深拷贝实现方式
+        /* 
+        递归
+        $.extend
+        lodash cloneDeep
+        */
+    </script>
+</body>
+</html>

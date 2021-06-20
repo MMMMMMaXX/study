@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Parent(name) {
+            this.name = [name];
+        }
+        Parent.prototype.getNamme = function(){
+            return this.name
+        }
+        // 在子类的构造函数中 执行父类的构造函数 并且为其绑定子类的this
+        function Child(){
+            // 调用Parent并将this指向当前的Child
+            Parent.call(this,'蔡徐坤')
+        }
+        const child1 = new Child()
+        const child2 = new Child()
+        child1.name[0] = '鹿晗'
+        console.log(child1.name);
+        console.log(child2.name);
+        // 缺点：并不能够继承父类原型上的方法和属性
+        console.log(child2.getNamme());
+        
+    </script>
+</body>
+
+</html>

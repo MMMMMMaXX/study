@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>this</title>
+</head>
+<body>
+    <script>
+        // 在函数中直接使用
+        function get(content){
+            console.log(content);
+        }
+        get('你好');    //get.call(window,'你好')的简写
+
+        // 函数作为对象的方法被调用（谁调用我 我就指向谁）
+        var person = {
+            name: '张三',
+            run: function (time){
+                console.log(`${this.name}在跑步，最多${time}就不行了`);
+            }
+        }
+        person.run(30); //person.run.call(person,30)的简写
+
+        // 笔试题
+        var name = 222;
+        var a = {
+            name: 111,
+            say: function(){
+                console.log(this.name);
+            }
+        }
+        var fun = a.say
+        fun()       //fun.call(window)  222
+        a.say()     //a.say.call(a)     111
+        var b = {
+            name: 333,
+            say: function(fun){
+                fun();
+            }
+        }
+        b.say(a.say)    //fun.call(window)  222
+        b.say = a.say
+        b.say()         //b.say.call(b)     333
+    </script>
+</body>
+</html>

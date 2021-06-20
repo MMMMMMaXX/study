@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+        需求
+        如果没有动物 抛出异常
+        打印动物的类型
+        打印动物的名字
+        打印动物的性别
+        */
+        function printAnimalsDetails(animal) {
+            var result = null
+            if (animal) {
+                if (animal.type) {
+                    if (animal.name) {
+                        if (animal.gender) {
+                            result = `${animal.name} is a ${animal.gender} ${animal.type}`
+                        } else {
+                            return 'no animal gender'
+                        }
+                    } else {
+                        return 'no animal name'
+                    }
+                } else {
+                    return 'no animal type'
+                }
+            } else {
+                return 'no animal'
+            }
+            return result
+        }
+        console.log(printAnimalsDetails());
+        console.log(printAnimalsDetails({ type: 'dog', name: '旺财', gender: 'male' }));
+
+        // 提前退出 和 提前返回
+        // 解构 要给一个默认值
+        const printAnimalsDetails2 = ({ type, name, gender } = {}) => {
+            if(!type){
+                return 'no animal type'
+            }
+            if(!name){
+                return 'no animal name'
+            }
+            if(!gender){
+                return 'no animal gender'
+            }
+            return `${name} is a ${gender} ${type}`
+        }
+        console.log(printAnimalsDetails2());
+        console.log(printAnimalsDetails2({ type: 'dog', gender: 'male', name: '旺财' }));
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>策略模式</title>
+</head>
+
+<body>
+    <form action="" method="post" id="re">
+        请输入用户名：<input type="text" name="username">
+        请输入密码：<input type="password" name="password">
+        请输入电话号码：<input type="number" name="phonenumber">
+        <button>提交</button>
+    </form>
+    <script>
+        // 表单验证
+        // var re = document.getElementById('re');
+        // re.onsubmit = function(){
+        //     if(re.username.value == ''){
+        //         alert('用户名不能为空');
+        //         return false;
+        //     }
+        //     if(re.password.value.length < 6){
+        //         alert('密码长度不能小于6');
+        //         return false;
+        //     }
+        //     if(!/^1[3/5/8][0-9]{9}$/.test(re.phonenumber.value)){
+        //         alert('手机号格式不正确');
+        //         return false;
+        //     }
+        // }
+
+        // 运用策略模式 封装
+        var re = document.getElementById('re');
+        var strategies = {
+            isNonEmpty: function (value, errorMsg) {
+                if (value == '') {
+                    return errorMsg;
+                }
+            },
+            minLength: function (value, length, errorMsg) {
+                if (value.length < 6) {
+                    return errorMsg;
+                }
+            },
+            isMobile: function (value, errorMsg) {
+                if (!/^1[3/5/8][0-9]{9}$/.test(value)) {
+                    return errorMsg;
+                }
+            },
+        }
+        // 假设我有个验证类 Validator
+        var validateFun = function () {
+            var validator = new Validator();
+            // 添加验证规则
+            validator.add(re.username, 'isNonEmpty', '用户名不能为空');
+            validator.add(re.password, 'minLength:6', '密码长度不能小于6');
+            validator.add(re.phonenumber, 'isMobile', '手机号格式不正确');
+            // 开启验证
+            var errorMsg = validator.start();
+            return errorMsg;
+        }
+        re.onsubmit = function () {
+            var errorMsg = validateFun();
+            if (errorMsg) {
+                alert(errorMsg);
+                return false;
+            }
+        }
+        // 封装策略类 构造函数 class
+        var Validator = function () {
+            // 保存验证规则的数组
+            this.cache = [];
+        }
+        Validator.prototype.add = function (dom, rule, errorMsg) {
+            // split() 方法用于把一个字符串分割成字符串数组。
+            var ary = rule.split(':');
+            // push() 方法可向数组的末尾添加一个或多个元素，并返回新的长度。
+            this.cache.push(function () {
+                // shift() 方法用于把数组的第一个元素从其中删除，并返回第一个元素的值。
+                var strategy = ary.shift();//用户选择的验证规则
+                // unshift() 方法可向数组的开头添加一个或更多元素，并返回新的长度。
+                ary.unshift(dom.value)
+                ary.push(errorMsg)
+                return strategies[strategy].apply(dom, ary);
+                // es6
+                // return strategies[strategy](...ary);
+            })
+        }
+        Validator.prototype.start = function () {
+            for (var i = 0, vaFunc; vaFunc = this.cache[i++];) {
+                var msg = vaFunc();
+                if (msg) {
+                    return msg;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

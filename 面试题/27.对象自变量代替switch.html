@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function printFruits(color) {
+            switch (color) {
+                case 'red': 
+                    return ['apple']
+                case 'yello': 
+                    return ['banana']
+                default:
+                    return []
+            }
+        }
+        console.log(printFruits(null));
+        console.log(printFruits("yello"));
+
+
+        // const
+        const fruitsColor = {
+            red: ['apple'],
+            yello: ['banana']
+        }
+        function printFruits2(color) {
+            return fruitsColor[color] || []
+        }
+        console.log(printFruits2(null));
+        console.log(printFruits2('yello'));
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小论坛</title>
+</head>
+<body>
+    <!-- action为空 表示form向本身进行提交 -->
+    <form action="" method="post">
+        <input type="text" name="content" id="content">
+        <input type="submit" value="提交">
+        <ol>
+            <% for(var i = 0;i < posts.length;i++){%>
+                <li><%= posts[i] %></li>
+            <%}%>
+        </ol>
+    </form>
+</body>
+</html>

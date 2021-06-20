@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>event-loop</title>
+</head>
+
+<body>
+    <script>
+        /* 
+        event-loop 事件循环机制 由三部分组成
+
+        调用栈 微任务队列 消息队列
+
+        event-loop开始的时候 会从全局一行一行的执行 
+        遇到函数调用 会压入到调用栈中 被压入的函数被称之为帧 
+        当函数返回后会从调用栈中弹出
+
+        https://www.bilibili.com/video/BV1sN411974w?p=15
+        */
+
+        /*  
+        fun2()压入调用栈
+        输出2
+        fun1()压入调用栈
+        输出1
+        fun1()弹出
+        输出3
+        fun2()弹出
+        */
+        function ex1() {
+            console.log('例1');
+            function fun1() {
+                console.log(1);
+            }
+            function fun2() {
+                console.log(2);
+                fun1();
+                console.log(3);
+            }
+            fun2();
+        }
+
+
+
+        /* 
+        js中异步操作 比如fetch setTimeout setInterval 
+        压入到调用栈中的时候里面的消息会进去到消息队列中去 
+        消息队列中 会等到调用栈清空后再执行
+        */
+        /* 
+        func2()压入调用栈
+        setTimeout压入调用栈
+        console.log(2);进入消息队列
+        console.log(3);进入消息队列
+        func1()压入调用栈
+        输出1
+        func1()弹出
+        输出4
+        输出2
+        输出3
+        setTimeout弹出
+        func2()弹出
+        */
+        function ex2() {
+            console.log('例2');
+            function func1() {
+                console.log(1);
+            }
+            function func2() {
+                setTimeout(() => {
+                    console.log(2);
+                    console.log(3);
+                }, 0)
+                func1();
+                console.log(4);
+            }
+            func2();
+        }
+
+
+
+        /*
+       promise async await的异步操作的时候会加入到微任务中去
+       会在调用栈清空的时候立即执行
+       调用栈中加入的微任务会立马执行
+       */
+        /*
+        console.log(4);进入微任务队列
+        resolve(5);进入微任务队列
+        console.log(6);进入微任务队列
+        输出4
+        输出6
+        funcc2()压入调用栈
+        setTimeout压入调用栈
+        console.log(2);进入消息队列
+        funcc1()压入调用栈
+        输出1
+        funcc1()弹出
+        输出3
+        输出5
+        输出2
+        setTimeout弹出
+        func2()弹出
+        */
+        function ex3() {
+            console.log('例3');
+            var p = new Promise(resolve => {
+                console.log(4);
+                resolve(5);
+                console.log(6);
+            })
+            function funcc1() {
+                console.log(1);
+            }
+            function funcc2() {
+                setTimeout(() => {
+                    console.log(2);
+                }, 0)
+                funcc1();
+                console.log(3);
+                p.then(resolve => {
+                    console.log(resolve);
+                })
+            }
+            funcc2();
+        }
+
+        // ex1();
+        // ex2();
+        ex3();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Parent(name){
+            this.name = name
+        }
+        Parent.prototype.getName = function(){
+            return this.name
+        }
+        function Child(){
+            // 调用Parent并将this指向当前的Child
+            Parent.call(this,'蔡徐坤')
+        }
+
+
+        //组合式继承    缺点：每次实例化都new了一个Parent
+        // Child.prototype = new Parent()   
+        // 寄生式组合继承   缺点：指向同一个对象，对子类原型的操作会改变父类原型
+        // Child.prototype = Parent.prototype  
+        // 浅拷贝寄生式组合继承
+        Child.prototype = Object.create(Parent.prototype)
+
+
+        Child.prototype.constructor = Child
+        const child1 = new Child()
+        const child2 = new Child()
+        child1.name = '鹿晗'
+        console.log(child1.name);
+        console.log(child2.name);
+        console.log(child2.getName());
+        
+
+        
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .shuo {
+            height: 100px;
+            width: auto;
+            background-color: red;
+            margin-left: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="shuo"></div>
+    <script>
+        /* var b=1;
+        function outer() {
+            var b=2;
+            function inner() {
+                b++
+                var b=6;
+                console.log(b);
+            }
+            inner();
+        }
+        outer(); */
+
+        var b = 10
+        function fn() {
+            console.log(this.b);
+        }
+        c = {
+            b: 11,
+            fn: fn.bind(window)
+        }
+        c.fn()
+    </script>
+    <canvas id="myCanvas" width="200" height="100"></canvas>
+    <script type="text/javascript">
+        var c = document.getElementById("myCanvas");
+        var cxt = c.getContext("2d");
+        cxt.fillStyle = "#FF0000";
+        cxt.fillRect(150, 75, 150, 75);
+        function Person(age, sex) {
+            this.age = age;
+            this.sex = sex;
+        }
+        Person.prototype.name = 'kavin'
+        var person1 = new Person()
+        var person2 = new Person()
+        console.log(person1.name) //kavin
+        console.log(person2)  //kavin
+        console.log(null == undefined);
+        function quickSort(arr) {
+            if (arr.length <= 1) {
+                return arr;
+            }
+            let flag = arr[0];
+            let left = [];
+            let right = [];
+
+            for (let i = 1; i < arr.length; i++) {
+                if (arr[i] > flag) {
+                    right.push(arr[i]);
+                } else {
+                    left.push(arr[i]);
+                }
+                
+
+            }
+            return quickSort(left).concat(flag, quickSort(right));
+        }
+        var arr = [4, 5, 6, 1, 2, 3, 8, 4, 9, 6, 7, 7, 0]
+
+        console.log(quickSort(arr));
+    </script>
+</body>
+
+</html>

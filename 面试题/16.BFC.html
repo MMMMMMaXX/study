@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bfc</title>
+    <style>
+        .father{
+            /* float: left; */
+            /* position: absolute; */
+            /* display: inline-block; */
+            overflow: hidden;
+
+            /* 以上四种创建BFC的方式最好的是哪种 */
+            /* overflow: hidden 因为不会影响外部布局 */
+        }
+        .son {
+            width: 300px;
+            height: 300px;
+            float: left;
+            background-color: aqua;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        /*
+        BFC
+        块级格式化上下文，它是指一个独立的块级渲染区域，只有Block-level BOX参与
+        该区域拥有一套渲染规则来约束块级盒子的布局，且与区域外部无关。
+        */
+
+    </script>
+    <!-- 
+        一个盒子不设置height，当内容子元素都浮动时，无法撑起自身
+        这个盒子没有形成BFC
+     -->
+    <!-- 
+        如何创建BFC
+        1.float的值不为none
+        2.position的值不是static,relative,sticky（absolute，fixed）
+        3.display的值是inline-block、flex或者inline-flex
+        4.overflow: hidden;
+     -->
+    <div class="father">
+        <div class="son"></div>
+        <div class="son"></div>
+        <div class="son"></div>
+    </div>
+
+</body>
+
+</html>

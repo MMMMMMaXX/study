@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>单例模式2</title>
+</head>
+<body>
+    <button id="button">登录</button>
+    <script>
+        // es6实现单例模式
+        // calss类可以看作es5构造函数的语法糖
+
+        // es5构造函数
+        // function Person(name,sex){
+        //     this.name = name;
+        //     this.sex = sex;
+        // }
+        // Person.prototype.say = function(){
+        //     console.log('学前端');
+        // }
+        // let person1 = new Person('mx','男')
+        // console.log(person1.name);
+        // person1.say()
+
+        // es6实现
+        class Person{
+            // 实际开发中 更多的是做初始化操作
+            constructor(name,sex){
+                this.name = name;
+                this.sex = sex;
+            }
+            say(){
+                console.log('学前端');
+            }
+        }
+        let person1 = new Person('mx','男');
+        console.log(person1.name);
+        person1.say()
+        console.log(person1.say === Person.prototype.say);
+
+        // es6实现单例模式 不使用闭包
+        // 静态方法 static
+        class Foo{
+            static classMethod(){
+                return 'hello';
+            }
+        }
+        let foo = new Foo();
+        console.log(Foo.classMethod());
+
+        class lyEdu{
+            constructor(name,creator,produce){
+                this.name = name;
+                this.creator = creator;
+                this.produce = produce;
+            }
+            static getInstance(name,creator,produce){
+                if(!this.instance){
+                    this.instance = new lyEdu(name,creator,produce)
+                }
+                return this.instance;
+            }
+        }
+        let lyCom = lyEdu.getInstance('gxust','mx',['JS','es6','vue'])
+        let lyComCom = lyEdu.getInstance('g','m',['JS','es6','vue'])
+        console.log(lyCom === lyComCom);
+    </script>
+</body>
+</html>

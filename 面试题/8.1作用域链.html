@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作用域链</title>
+</head>
+
+<body>
+    <script>
+        // a定义->a执行->b定义->b执行
+        // 函数只有在执行的时候才有自己的AO
+        var global;
+        function a() {
+            function b() {
+                var bb = 123;
+                aa = 0;
+            }
+            var aa = 234;
+            b()
+        }
+        a()
+    </script>
+</body>
+
+</html>

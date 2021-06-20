@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Map
+        var obj1 = {
+            name: 'zs'
+        }
+        var obj2 = {
+            name: 'ls'
+        }
+        var obj3 = {
+            [obj1]: '11',
+            [obj2]: '22'
+        }
+        /* key默认是个字符串，如果传入的不是字符串，会隐式的调用toSting()方法，
+        [obj1]和[obj2]用toSting()转换后都是[object Object]，所以obj3中只有一项 */
+        console.log(obj3);
+
+        const fruitsColor = new Map().set('red', ['apple']).set('yello', ['banana']
+        )
+        function printFruits(color) {
+            return fruitsColor.get(color) || []
+        }
+        console.log(printFruits(null));
+        console.log(printFruits('yello'));
+    </script>
+</body>
+
+</html>

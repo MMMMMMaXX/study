@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>节流函数</title>
+</head>
+
+<body>
+    <button id="button">点击</button>
+    <script>
+        // 节流函数
+        function throt(func, wait) {
+            // 会执行你点击了多少次 就会执行多少次
+            // 我们想要 时间是1秒 然后一秒内你点击多少次 也只执行一次
+            let timeOut;
+            return function () {
+                if (!timeOut) {
+                    // setTimeout() 是属于 window 的方法，该方法用于在指定的毫秒数后调用函数或计算表达式。
+                    // setTimeout不执行 如果timeOut有值的话就不执行
+                    timeOut = setTimeout(function () {
+                        func();
+                        // 银行工作人员办理完了之后 后面的不办理了
+                        // 要把timeOut置空
+                        timeOut = null;
+                    }, wait)
+                }
+            }
+        }
+        function handle(){
+            console.log(Math.random());
+        }
+        document.getElementById('button').onclick = throt(handle,2000);
+    </script>
+</body>
+
+</html>

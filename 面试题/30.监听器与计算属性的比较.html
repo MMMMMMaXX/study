@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://vuejs.org/js/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="Amount">
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    Amount:100
+                }
+            },
+            /* 
+            特点与区别
+            vue的computed选项主要用于同步对数据的处理
+            而watch选项主要用于事件的派发，可异步
+            这两者都能达到相同的效果，但是基于他们各自的特点，使用场景会有一些区分
+            computed拥有缓存属性，当任意一个依赖的数据发生变化时，关联的数据才会发生变化，适用于计算或者格式化数据的场景
+            watch监听数据，有关联但是没有依赖，只要某个数据发生变化，就可以处理一些数据或者派发事件并同步/异步执行
+            
+            区别：
+            计算属性有缓存的特性（依赖某个数据的变化）是watch不具备的（没有依赖）
+            计算属性一般用于同步的格式化数据的场景，watch处理一些数据或派发异步的事件
+            */
+           /* 
+           watch监听器能做到的计算属性computed也能做到，什么时候适用监听器呢？
+           主要适用于与事件和交互相关的场景，数据变化为条件，适用于一个数据同时触发多个事物
+
+           弹窗提醒等事件交互的，适用于watch，数据的计算和字符串的处理，适用于computed
+           */
+            watch:{
+                Amount:function (newVal,oldVal){
+                    if(newVal>5000){
+                        alert("最大额度可借5000元")
+                        this.Amount = oldVal
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

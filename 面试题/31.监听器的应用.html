@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://vuejs.org/js/vue.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+
+</head>
+
+<body>
+    <div id="app">
+        <p>
+            你问的问题是：
+            <input type="text" v-model="question">
+        </p>
+        <p>{{answer}}</p>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    question: '',
+                    answer: '在你提出问题之前，我是无法给你回复的'
+                }
+            },
+
+            methods: {
+                getAnsewr: function () {
+                    if (this.question.indexOf('?') === -1) {
+                        return this.answer = '问题没有问号怎么问别人呢？'
+                    }
+                    this.answer = '我正在思考中，请稍后...'
+                    var that = this
+                    axios.get('https://yesno.wtf/api').then(function (res) {
+                        that.answer = _.capitalize(res.data.answer)
+                    })
+                }
+            },
+            
+            watch: {
+                question: function () {
+                    // 防抖处理
+                    // _.debounce 就是防抖的封装
+                    this.answer = '等待你停止输入'
+                    this.debounceGetAnswer()
+                    //this.getAnsewr()
+                }
+            },
+
+            created: function () {
+                this.debounceGetAnswer = _.debounce(this.getAnsewr, 500)
+            },
+
+        })
+    </script>
+</body>
+
+</html>

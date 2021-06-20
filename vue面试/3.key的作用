@@ -1,0 +1,11 @@
+vue中key的作用和工作原理？
+源码中找答案：src\core\vdom\patch.js-updateChildren()
+patch过程中会执行patchvnode，patchvnode中会执行updateChildren方法，他会去更新所有的两个新旧的子元素，
+在过程中通过key就能判断在循环的这两个元素节点是不是相同节点
+如果没有key永远都认为是两个相同节点，会一直更新，会多做很多DOM操作
+
+key的作用主要是为了高效的更新虚拟DOM，
+其原理是vue在patch过程中通过key可以精准判断两个节点是否是同一个，从而避免频繁更新不同元素，
+使得整个patch过程更加高效，减少DOM操作量，提高性能
+另外，若不设置key还可能在列表更新时引发一些隐蔽的bug
+vue中在使用i相同标签名元素的过渡切换时，也会使用到key属性，其目的也是为了让vue可以区分他们，否则vue指挥替换其内部属性而不会触发过渡效果
