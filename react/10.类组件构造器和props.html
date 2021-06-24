@@ -29,6 +29,18 @@
     <script type="text/babel">
         // 创建组件
         class Person extends React.Component {
+            constructor(props){
+                // 通常，在React中，构造函数仅用于以下两种情况
+                // 1.通常给this.state赋值对象来初始化内部state
+                //this.state = { isHot: true, wind: '微风' };
+                // 2.为事件处理函数绑定实例
+                //this.changeWeather = this.changeWeather.bind(this);
+            
+                // 构造器是否接受props，是否传递给super，取决于：是否希望在构造器中通过this访问props
+                // 类中构造器基本不需要写
+                super(props);
+                console.log('构造器内',this.props);
+            }
             render() {
                 const { name, age, sex } = this.props
                 return (
@@ -53,10 +65,6 @@
         
         // 渲染组件
         ReactDOM.render(<Person name="jerry" age={19} />, document.getElementById('test1'));
-        ReactDOM.render(<Person name="Tom" sex="男" />, document.getElementById('test2'));
-
-        const p = { name: 'Marry', age: 20, sex: '女' }
-        ReactDOM.render(<Person {...p} />, document.getElementById('test3'));
 
     </script>
 </body>

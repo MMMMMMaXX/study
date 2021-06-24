@@ -48,7 +48,7 @@
             name: PropTypes.string.isRequired,//限制name必须传且为字符串
             sex: PropTypes.string,//限制sex为字符串
             age: PropTypes.number,//限制age为数值
-            spack:PropTypes.func//限制spack为函数
+            speak:PropTypes.func//限制spack为函数
         }
         // 指定默认标签属性值
         Person.defaultProps = {
@@ -56,12 +56,15 @@
             age: -1//age默认值-1
         }
         // 渲染组件
-        ReactDOM.render(<Person name="jerry" age={19} />, document.getElementById('test1'));
-        ReactDOM.render(<Person name="Tom" sex="男" />, document.getElementById('test2'));
+        ReactDOM.render(<Person name="jerry" age={19} speak={speak}/>, document.getElementById('test1'));
+        ReactDOM.render(<Person name="Tom" sex="男" speak={speak}/>, document.getElementById('test2'));
 
         const p = { name: 'Marry', age: 20, sex: '女' }
         ReactDOM.render(<Person {...p} />, document.getElementById('test3'));
 
+        function speak(){
+            console.log('说话');
+        }
     </script>
 </body>
 
