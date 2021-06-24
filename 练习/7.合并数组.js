@@ -1,4 +1,4 @@
-function getArr(arr1, arr2) {
+var getArr = function (arr1, arr2) {
     var arr = [];
     for (var i = 0, j = 0; i < arr1.length || j < arr2.length;) {
         if (i < arr1.length && arr1[i] < arr2[j]) {
