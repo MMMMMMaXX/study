@@ -42,6 +42,7 @@
         ReactDOM.render(<Person name="Tom" age="18" sex="男" />, document.getElementById('test2'));
 
         const p = { name: 'Marry', age: 20, sex: '女' }
+        // {...p}和原生js不同，不是克隆对象，而是获取对象的key:value，是react+babel下的语法
         ReactDOM.render(<Person {...p} />, document.getElementById('test3'));
 
     </script>
