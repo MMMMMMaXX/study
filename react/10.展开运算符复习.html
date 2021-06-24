@@ -21,8 +21,18 @@
         }
         console.log(sum(1,2,3,4,5));
 
+        // 构造字面量对象时使用展开语法
         let person = {name:'Tom',age:'18'};
-        let person2 = person
+        let person2 = {...person} //克隆一个对象
+        //console.log(...person); //报错，展开运算符不能展开对象
+        person.name = 'jerry';
+        console.log(person2);
+        console.log(person);
+
+        // 使用...进行合并
+        let person = {...person,name:jack,address:'地球'}
+        console.log(person3);
+
     </script>
     
 </body>

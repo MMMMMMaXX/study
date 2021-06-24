@@ -10,7 +10,9 @@
 
 <body>
     <!-- 准备好一个“容器” -->
-    <div id="test"></div>
+    <div id="test1"></div>
+    <div id="test2"></div>
+    <div id="test3"></div>
 
     <!-- 引入react核心库 -->
     <script type="text/javascript" src="./js/react.development.js"></script>
@@ -25,14 +27,23 @@
         // 创建组件
         class Person extends React.Component {
             render() {
-                return {
-
-                }
+                const { name, age, sex } = this.props
+                return (
+                    <ul>
+                        <li>姓名：{name}</li>
+                        <li>性别：{sex}</li>
+                        <li>年龄：{age + 1}</li>
+                    </ul>
+                )
             }
         }
         // 渲染组件
-        ReactDOM.render(<Person />,document.getElementById('test'));
-        
+        ReactDOM.render(<Person name="jerry" age={19} sex="男" />, document.getElementById('test1'));
+        ReactDOM.render(<Person name="Tom" age="18" sex="男" />, document.getElementById('test2'));
+
+        const p = { name: 'Marry', age: 20, sex: '女' }
+        ReactDOM.render(<Person {...p} />, document.getElementById('test3'));
+
     </script>
 </body>
 
