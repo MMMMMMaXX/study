@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ref</title>
 </head>
+
 <body>
     <!-- 准备好一个“容器” -->
     <div id="test"></div>
@@ -20,37 +22,36 @@
     <script type="text/javascript" src="./js/babel.min.js"></script>
 
     <script type="text/babel">
-    /* 
-    需求：自定义组件
-    1.点击按钮，提示第一个输入框中的值
-    2.当第2个输入框失去焦点时，提示这个输入框中的值
-    */
+        /* 
+        需求：自定义组件
+        1.点击按钮，提示第一个输入框中的值
+        2.当第2个输入框失去焦点时，提示这个输入框中的值
+        */
         class Demo extends React.Component {
             render() {
-                // string类型ref以key:value形式存在refs中，key为ref的参数，value为ref所处标签
                 return (
+                    // 回调形式ref的参数c为当前节点，把当前节点放在组件实例自身上，取名为input1
                     <div>
-                        <input ref="input1" type="text" placeholder="点击按钮提示数据"/>
+                        <input ref={c => this.input1 = c} type="text" placeholder="点击按钮提示数据" />
                         <button onClick={this.showData}>点我提示左边数据</button>
-                        <input ref="input2" onBlur={this.showData2} type="text" placeholder="失去焦点提示数据"/>
+                        <input ref={c => this.input2 = c} onBlur={this.showData2} type="text" placeholder="失去焦点提示数据" />
                     </div>
                 )
             }
             // 展示左侧输入框数据
             showData = () => {
-                const {input1} = this.refs;
+                const { input1 } = this;
                 alert(input1.value)
             }
             // 右侧
             showData2 = () => {
-                const {input2} = this.refs;
+                const { input2 } = this;
                 alert(input2.value)
             }
         }
-        ReactDOM.render(<Demo/>,document.getElementById('test'))
-        /* 
-        string类型ref效率不高，已经过时了
-        */
+        ReactDOM.render(<Demo />, document.getElementById('test'));
+
     </script>
 </body>
+
 </html>
