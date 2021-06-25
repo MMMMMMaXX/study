@@ -25,8 +25,14 @@
 
         class Demo extends React.Component {
             /* 
-            React.createRef调用后可以返回一个容器，该容器可以存储被ref所标识的节点,
-            该容器是“专人专用”，只能存一个
+            （1）通过onXxx属性指定事件处理函数（注意大小写）
+                （a）React使用的是自定义（合成）事件，而不是使用原生DOM事件
+                    ——为了更好的兼容性，兼容各种浏览器
+                （b）React中的事件是通过事件委托方式处理的（委托给组件最外层的元素）
+                    ——为了高效
+            （2）通过event.target得到发生事件的DOM元素对象
+                ——发生事件的元素是要操作的元素，可以替代ref
+                ——不要过渡使用ref
             */
             //创建ref容器    
             myRef = React.createRef();
@@ -49,8 +55,12 @@
             showData = () => {
                 alert(this.myRef.current.value);
             }
-            showData2 = () => {
+            /* showData2 = () => {
                 alert(this.myRef2.current.value);
+            } */
+            // 替代ref
+            showData2 = (event) => {
+                alert(event.target.value);
             }
         }
         ReactDOM.render(<Demo />, document.getElementById('test'));
