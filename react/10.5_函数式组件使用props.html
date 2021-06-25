@@ -28,7 +28,8 @@
 
     <script type="text/babel">
         // 创建组件
-        class Person extends React.Component {
+        /* class Person extends React.Component {
+
             render() {
                 const { name, age, sex } = this.props
                 return (
@@ -39,32 +40,42 @@
                     </ul>
                 )
             }
+            static propTypes = {
+                name: PropTypes.string.isRequired,
+                sex: PropTypes.string,
+                age: PropTypes.number,
+            }
+            static defaultProps = {
+                sex: '未知',
+                age: -1
+            }
+        } */
+
+
+        // 函数式组件使用props
+        // 函数式组件不能使用state，refs
+        function Person(props) {
+            const { name, age, sex } = props;
+            return (
+                <ul>
+                    <li>姓名：{name}</li>
+                    <li>性别：{sex}</li>
+                    <li>年龄：{age}</li>
+                </ul>
+            )
         }
-        // 对标签属性进行类型、必要性限制
-        // propTypes 小写p 是个属性
         Person.propTypes = {
-            // 需引入prop-types.js，15版本内置在React对象上，15.5版本因为使React对象比较大还不一定有用就被弃用，改为外部引用
-            // PropTypes 大写P 在prop-types中
-            name: PropTypes.string.isRequired,//限制name必须传且为字符串
-            sex: PropTypes.string,//限制sex为字符串
-            age: PropTypes.number,//限制age为数值
-            speak:PropTypes.func//限制spack为函数
+            name: PropTypes.string.isRequired,
+            sex: PropTypes.string,
+            age: PropTypes.number,
         }
-        // 指定默认标签属性值
         Person.defaultProps = {
-            sex: '未知',//sex默认值为未知
-            age: -1//age默认值-1
+            sex: '未知',
+            age: -1
         }
         // 渲染组件
-        ReactDOM.render(<Person name="jerry" age={19} speak={speak}/>, document.getElementById('test1'));
-        ReactDOM.render(<Person name="Tom" sex="男" speak={speak}/>, document.getElementById('test2'));
+        ReactDOM.render(<Person name="jerry" sex='男' />, document.getElementById('test1'));
 
-        const p = { name: 'Marry', age: 20, sex: '女' }
-        ReactDOM.render(<Person {...p} />, document.getElementById('test3'));
-
-        function speak(){
-            console.log('说话');
-        }
     </script>
 </body>
 
