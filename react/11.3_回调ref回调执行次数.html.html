@@ -22,31 +22,39 @@
     <script type="text/javascript" src="./js/babel.min.js"></script>
 
     <script type="text/babel">
-        /* 
-        需求：自定义组件
-        1.点击按钮，提示第一个输入框中的值
-        2.当第2个输入框失去焦点时，提示这个输入框中的值
-        */
+
         class Demo extends React.Component {
+            state = { isHot: true }
+            /* 
+            如果ref回调函数是内联函数的方式定义的，在更新过程中他会执行两次，
+            第一次传入参数为null，第二次传入参数为所处DOM元素，
+            因为每次渲染时会创建一个新的函数实例，React清空旧ref并设置新的，
+            把ref回调写为这个class的函数可以避免，
+            但大多数是无关紧要的，写成内联就ok
+            */
             render() {
+                const { isHot } = this.state
                 return (
-                    // 回调形式ref的参数c为当前节点，把当前节点放在组件实例自身上，取名为input1
                     <div>
-                        <input ref={c => this.input1 = c} type="text" placeholder="点击按钮提示数据" />
-                        <button onClick={this.showData}>点我提示左边数据</button>
+                        <h2 onClick={this.changeWeather}>今天天气很{isHot ? '炎热' : '凉爽'}</h2>
+                        {/*<input ref={(c) => { this.input1 = c; console.log('@', c); }} type="text" placeholder="点击按钮提示数据" />*/}
+                        <input ref={this.saveInput} type="text" placeholder="点击按钮提示数据" />
+                        <button onClick={this.showInfo}>点我提示左边数据</button>
                         <input ref={c => this.input2 = c} onBlur={this.showData2} type="text" placeholder="失去焦点提示数据" />
                     </div>
                 )
             }
-            // 展示左侧输入框数据
-            showData = () => {
+            showInfo = () => {
                 const { input1 } = this;
-                alert(input1.value)
+                alert(input1.value);
             }
-            // 右侧
-            showData2 = () => {
-                const { input2 } = this;
-                alert(input2.value)
+            changeWeather = () => {
+                const { isHot } = this.state;
+                this.setState({ isHot: !isHot });
+            }
+            saveInput = (c) => {
+                this.input1 = c;
+                console.log('@', c);
             }
         }
         ReactDOM.render(<Demo />, document.getElementById('test'));
