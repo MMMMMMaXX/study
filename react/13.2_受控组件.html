@@ -23,20 +23,40 @@
 
     <script type="text/babel">
     /* 
-    非受控组件：现用现取（使用ref）
+    受控组件：放状态中一起取（使用state）
     */
         // 创建组件
         class Login extends React.Component {
+
+            // 初始化状态
+            state = {
+                username:'',//用户名
+                password:''//密码
+            }
+
+            // 保存到状态中
+            saveUsername = (event) => {
+                // console.log(event.target.value);
+                this.setState({username:event.target.value})
+            }
+            savePassword = (event) => {
+                // console.log(event.target.value);
+                this.setState({password:event.target.value})
+            }
+
+            // 表单提交的回调
             handleSubmit = (event) => {
                 event.preventDefault();//阻止表单提交
-                const {username1,password1} = this;
-                alert(`你输入的用户名为：${username1.value}\n你输入的密码为：${password1.value}`);
+                const {username,password} = this.state;
+                alert(`你输入的用户名为：${username}\n你输入的密码为：${password}`);
             }
+
+
             render() {
                 return (
                     <form action="http://47.102.202.74/act" onSubmit={this.handleSubmit}>
-                        用户名：<input ref={c => this.username1 = c} type="text" name="username" />
-                        密码：<input ref={c => this.password1 = c} type="password" name="password" />
+                        用户名：<input onChange={this.saveUsername} type="text" name="username" />
+                        密码：<input onChange={this.savePassword} type="password" name="password" />
                         <button>登录</button>
                     </form>
                 )
