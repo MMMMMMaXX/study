@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 准备好一个“容器” -->
+    <div id="test"></div>
+
+    <!-- 引入react核心库 -->
+    <script type="text/javascript" src="./js/17.0.1/react.development.js"></script>
+
+    <!-- 引入react-dom，用于支持react操作dom -->
+    <script type="text/javascript" src="./js/17.0.1/react-dom.development.js"></script>
+
+    <!-- 引入babel，用于将jsx转为js，es6转为es5 -->
+    <script type="text/javascript" src="./js/17.0.1/babel.min.js"></script>
+
+    <script type="text/babel">
+        /* 
+        使用index索引值做key
+            数据：
+                { id: 1, name: '小张', age: 18 },
+                { id: 2, name: '小李', age: 19 }
+            初始虚拟DOM：
+                <li key=0>小张---18</li><input type="text"/>
+                <li key=1>小李---19</li><input type="text"/>
+
+            更新后的数据：
+                { id: 1, name: '小张', age: 18 },
+                { id: 2, name: '小李', age: 19 },
+                { id: 3, name: '小王', age: 20 }
+            更新后的虚拟DOM：
+                <li key=0>小王---20</li><input type="text"/>
+                <li key=1>小张---18</li><input type="text"/>
+                <li key=2>小李---19</li><input type="text"/>
+
+            更新三个真实DOM，输入框内容移动
+        */
+        /* 
+         使用id唯一标识索引值做key
+             数据：
+                 { id: 1, name: '小张', age: 18 },
+                 { id: 2, name: '小李', age: 19 }
+             初始虚拟DOM：
+                 <li key=1>小张---18</li><input type="text"/>
+                 <li key=2>小李---19</li><input type="text"/>
+ 
+             更新后的数据：
+                 { id: 3, name: '小张', age: 18 },
+                 { id: 1, name: '小李', age: 19 },
+                 { id: 2, name: '小王', age: 20 }
+             更新后的虚拟DOM：
+                 <li key=3>小王---20</li><input type="text"/>
+                 <li key=1>小张---18</li><input type="text"/>
+                 <li key=2>小李---19</li><input type="text"/>
+ 
+             更新一个真实DOM，输入框内容不变
+         */
+        class Person extends React.Component {
+
+            state = {
+                person: [
+                    { id: 1, name: '小张', age: 18 },
+                    { id: 2, name: '小李', age: 19 }
+                ]
+            }
+
+            add = () => {
+                const { person } = this.state;
+                const p = { id: person.length + 1, name: '小王', age: 20 }
+                this.setState({ person: [p, ...person] });
+            }
+
+            render() {
+                return (
+                    <div>
+                        <h1>展示人员信息</h1>
+                        <button onClick={this.add}>添加一个小王</button>
+                        <h2>使用index作为key</h2>
+                        <ul>
+                            {
+                                this.state.person.map((personObj, index) => {
+                                    return <li key={index}>{personObj.name}---{personObj.age}<input type="text"/></li>
+                                })
+                            }
+                        </ul>
+                        <hr />
+                        <hr />
+                        <h2>使用id唯一标识作为key</h2>
+                        <ul>
+                            {
+                                this.state.person.map((personObj) => {
+                                    return <li key={personObj.id}>{personObj.name}---{personObj.age}<input type="text"/></li>
+                                })
+                            }
+                        </ul>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<Person />, document.getElementById('test'));
+    </script>
+</body>
+
+</html>
