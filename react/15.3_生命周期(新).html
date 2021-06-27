@@ -51,10 +51,22 @@
                 ReactDOM.unmountComponentAtNode(document.getElementById('test'))
             }
 
-            // 组件将要挂载的钩子
-            componentWillMount() {
-                console.log('count---componentWillMount');
+            // 若state的值任何时候都取决于props，那么可以使用getDerivedStateFromProps
+            static getDerivedStateFromProps(props, state) {
+                console.log('count---getDerivedStateFromProps', props, state);
+                return null;
             }
+
+            // 在更新之前获取快照
+            getSnapshotBeforeUpdate() {
+                console.log('count---getSnapshotBeforeUpdate');
+                return 'mx';
+            }
+
+            // 组件将要挂载的钩子
+            // UNSAFE_componentWillMount() {
+            //     console.log('count---componentWillMount');
+            // }
 
             // 组件挂载完毕的钩子
             componentDidMount() {
@@ -73,13 +85,13 @@
             }
 
             // 组件将要更新的钩子
-            UNSAFE_componentWillUpdate() {
-                console.log('count---componentWillUpdate');
-            }
+            // UNSAFE_componentWillUpdate() {
+            //     console.log('count---componentWillUpdate');
+            // }
 
-            // 组件更新完毕的钩子
-            componentDidUpdate() {
-                console.log('count---componentDidUpdate');
+            // 组件更新完毕的钩子   参数为更新前的props,stateh和getSnapshotBeforeUpdate的返回值
+            componentDidUpdate(preProps, preState, snapshotValue) {
+                console.log('count---componentDidUpdate', preProps, preState, snapshotValue);
             }
 
             render() {
@@ -123,9 +135,9 @@
 
             // 组件将要接收新的props的钩子
             // 实例化时接收的props不触发
-            UNSAFE_componentWillReceiveProps() {
-                console.log('B---componentWillReceiveProps');
-            }
+            // UNSAFE_componentWillReceiveProps() {
+            //     console.log('B---componentWillReceiveProps');
+            // }
 
             // 控制组件更新的“阀门”
             shouldComponentUpdate() {
@@ -134,15 +146,15 @@
             }
 
             // 组件将要更新的钩子
-            UNSAFE_componentWillUpdate() {
-                console.log('B---componentWillUpdate');
-            }
+            // UNSAFE_componentWillUpdate() {
+            //     console.log('B---componentWillUpdate');
+            // }
 
             // 组件更新完毕的钩子
             componentDidUpdate() {
                 console.log('B---componentDidUpdate');
             }
-            
+
             render() {
                 // console.log(this)
                 console.log('B---render');
