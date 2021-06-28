@@ -9,13 +9,19 @@ import './index.css'
 // console.log(nanoid());
 export default class Header extends Component {
 
+    // 对接收的props进行：类型、必要性的限制
+    static propTypes = {
+        addTodo: PropTypes.func.isRequired
+    }
+
+    // 键盘事件的回调
     handleKeyUp = (event) => {
         // 解构赋值，获取keyCode，target
         const { keyCode, target } = event
         // 判断是否是回车键
         if (keyCode !== 13) return
         // 添加的todo名字不能为空
-        if(target.value.trim() === '') {
+        if (target.value.trim() === '') {
             alert('输入不能为空');
             target.value = '';
             return

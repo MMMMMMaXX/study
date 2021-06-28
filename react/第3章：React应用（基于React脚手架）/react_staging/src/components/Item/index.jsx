@@ -22,16 +22,24 @@ export default class Item extends Component {
         }
     }
 
+    // 删除一个todo的回调
+    handleDelete = (id) => {
+        // 不使用高阶函数
+        if (window.confirm('是否确定删除?')) {
+            this.props.deleteTodo(id);
+        }
+    }
+
     render() {
         const { id, name, done } = this.props;
         const { mouse } = this.state
         return (
             <li style={{ backgroundColor: mouse ? '#ddd' : 'white' }} onMouseEnter={this.handleMouse(true)} onMouseLeave={this.handleMouse(false)}>
                 <label>
-                    <input type="checkbox" defaultChecked={done} onChange={this.handleCheck(id)} />
+                    <input type="checkbox" checked={done} onChange={this.handleCheck(id)} />
                     <span>{name}</span>
                 </label>
-                <button className="btn btn-danger" style={{ display: mouse ? 'block' : "none" }}>删除</button>
+                <button onClick={() => this.handleDelete(id)} className="btn btn-danger" style={{ display: mouse ? 'block' : "none" }}>删除</button>
             </li>
         )
     }
