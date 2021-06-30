@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PubSub from 'pubsub-js'
-import axios from 'axios'
+// import axios from 'axios'
 
 export default class Search extends Component {
 
@@ -13,8 +13,8 @@ export default class Search extends Component {
             if (keyCode === 13) {
                 // this.throt(func());
                 if (!timeOut) {
+                    func();
                     timeOut = setTimeout(function () {
-                        func();
                         timeOut = null;
                     }, 1000)
                 }
@@ -32,8 +32,8 @@ export default class Search extends Component {
         let timeOut;
         return function () {
             if (!timeOut) {
+                func();
                 timeOut = setTimeout(function () {
-                    func();
                     timeOut = null;
                 }, 1000)
             }
