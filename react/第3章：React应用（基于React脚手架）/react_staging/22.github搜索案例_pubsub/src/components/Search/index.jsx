@@ -40,7 +40,7 @@ export default class Search extends Component {
         }
     }
 
-    search = async () => {
+    search = () => {
         console.log('Search组件发布消息了');
         // 获取用户的输入
         // 解构赋值连续写法
@@ -55,10 +55,7 @@ export default class Search extends Component {
             PubSub.publish('mx', { isFirst: true })
         } else {
             // 发送网络请求
-
-
-            // #region 使用axios发送
-            /* axios.get(`http://localhost:3000/api1/search/users?q=${keyWord}`).then(
+            axios.get(`http://localhost:3000/api1/search/users?q=${keyWord}`).then(
                 response => {
                     // 请求成功后通知List更新状态
                     // this.props.updateAppState({ isLoading: false, users: response.data.items })
@@ -71,40 +68,9 @@ export default class Search extends Component {
                     PubSub.publish('mx', { isLoading: false, err: error.message })
                     console.log('失败了', error.message);
                 }
-            ) */
-            //#endregion
-
-
-            // #region 使用fetch发送(未优化)
-            /* fetch(`http://localhost:3000/api1/search/users?q=${keyWord}`).then(
-                response => {
-                    console.log('联系服务器成功了', response);
-                    return response.json()
-                },
-                error => {
-                    console.log('联系服务器失败了', error.message);
-                    return new Promise(() => { })
-                }
-            ).then(
-                response => {
-                    console.log('获取数据成功了', response);
-                },
-                error => {
-                    console.log('获取数据失败了', error.message);
-                }
-            ) */
-            // 使用fetch发送(优化)
-            try {
-                const response = await fetch(`http://localhost:3000/api1/search/users?q=${keyWord}`)
-                const data = await response.json();
-                PubSub.publish('mx', { isLoading: false, users: data.items })
-                console.log(data);
-            } catch (error) {
-                PubSub.publish('mx', { isLoading: false, err: error.message })
-                console.log('请求出错', error);
-            }
-            // #endregion
+            )
         }
+
 
     }
 
