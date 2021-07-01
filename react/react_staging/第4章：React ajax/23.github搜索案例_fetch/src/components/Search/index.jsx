@@ -12,8 +12,8 @@ export default class Search extends Component {
             const { keyCode } = event;
             if (keyCode === 13) {
                 // this.throt(func());
-                func();
                 if (!timeOut) {
+                    func();
                     timeOut = setTimeout(function () {
                         timeOut = null;
                     }, 1000)
@@ -31,8 +31,8 @@ export default class Search extends Component {
     throt(func) {
         let timeOut;
         return function () {
-            func();
             if (!timeOut) {
+                func();
                 timeOut = setTimeout(function () {
                     timeOut = null;
                 }, 1000)
