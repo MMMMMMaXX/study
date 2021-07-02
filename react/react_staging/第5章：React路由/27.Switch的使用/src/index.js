@@ -5,7 +5,6 @@ import ReactDOM from 'react-dom'
 // 引入路由器
 // 路由器包裹整个App，使App内的路由可以通信
 import { BrowserRouter } from 'react-router-dom'
-// import { HashRouter } from 'react-router-dom'
 // 引入App组件
 import App from './App'
 

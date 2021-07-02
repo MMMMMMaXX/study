@@ -27,8 +27,8 @@ export default class App extends Component {
                             <NavLink activeClassName="peiqi" className="list-group-item" to="/home" >Home</NavLink> */}
                             {/* <MyNavLink to="/about" title="About" a={1} b={2} c={3}/> */}
                             {/* 标签体内容也是一个特殊的标签属性，放在children中 */}
-                            <MyNavLink to="/mx/about" a={1} b={2} c={3}>About</MyNavLink>
-                            <MyNavLink to="/mx/home">Home</MyNavLink>
+                            <MyNavLink to="/about" a={1} b={2} c={3}>About</MyNavLink>
+                            <MyNavLink to="/home">Home</MyNavLink>
 
                         </div>
                     </div>
@@ -38,8 +38,8 @@ export default class App extends Component {
 
                                 {/* 注册路由 */}
                                 <Switch>
-                                    <Route path="/mx/about" component={About} />
-                                    <Route path="/mx/home" component={Home} />
+                                    <Route path="/about" component={About} />
+                                    <Route path="/home" component={Home} />
                                 </Switch>
 
                             </div>
