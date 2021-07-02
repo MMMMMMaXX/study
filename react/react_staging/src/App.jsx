@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
 import { Link, Route } from 'react-router-dom'
-import About from './components/About'
-import Home from './components/Home'
+import About from './pages/About'//路由组件
+import Home from './pages/Home'//路由组件
+import Header from './components/Header'//一般组件
 
 export default class App extends Component {
-
     render() {
         return (
             <div>
                 <div className="row">
                     <div className="col-xs-offset-2 col-xs-8">
-                        <div className="page-header"><h2>React Router Demo</h2></div>
+                        <Header />
                     </div>
                 </div>
                 <div className="row">
