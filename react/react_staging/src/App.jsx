@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
 import About from './pages/About'//路由组件
 import Home from './pages/Home'//路由组件
 import Header from './components/Header'//一般组件
@@ -27,9 +27,8 @@ export default class App extends Component {
                             <NavLink activeClassName="peiqi" className="list-group-item" to="/home" >Home</NavLink> */}
                             {/* <MyNavLink to="/about" title="About" a={1} b={2} c={3}/> */}
                             {/* 标签体内容也是一个特殊的标签属性，放在children中 */}
-                            <MyNavLink to="/mx/about" a={1} b={2} c={3}>About</MyNavLink>
-                            <MyNavLink to="/mx/home">Home</MyNavLink>
-
+                            <MyNavLink to="/about" a={1} b={2} c={3}>About</MyNavLink>
+                            <MyNavLink to="/home">Home</MyNavLink>
                         </div>
                     </div>
                     <div className="col-xs-6">
@@ -38,8 +37,15 @@ export default class App extends Component {
 
                                 {/* 注册路由 */}
                                 <Switch>
-                                    <Route path="/mx/about" component={About} />
-                                    <Route path="/mx/home" component={Home} />
+                                    {/* exact严格匹配 */}
+                                    {/* <Route exact path="/about" component={About} />
+                                    <Route exact path="/home" component={Home} /> */}
+
+                                    <Route path="/about" component={About} />
+                                    <Route path="/home" component={Home} />
+
+                                    {/* 重定向 */}
+                                    <Redirect to="/home" />
                                 </Switch>
 
                             </div>
