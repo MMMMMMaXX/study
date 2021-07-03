@@ -23,7 +23,7 @@ export default class Detail extends Component {
 
         const findResult = detailData.find((datailObj) => {
             return datailObj.id === id;
-        })
+        }) 
         return (
             <div>
                 <ul>
