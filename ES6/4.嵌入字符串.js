@@ -11,4 +11,17 @@ function t(formats,...args) {
     console.log(args);
 }
 
-t`你好，${name}！再见。` 
+t`你好，${name}！再见。`
+console.log('1') 
+console.log('1') 
+console.log('1') 
+console.log('1') 
+console.log('1') 
+console.log('1') console.log('1') 
+console.log('1') 
+console.log('1') 
+
+console.log('1') 
+console.log('1') 
+console.log('1') 
+console.log('1') 
