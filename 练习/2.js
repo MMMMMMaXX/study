@@ -8,9 +8,10 @@ function Son() {
     Father.call(this);
 }
 
+
 Son.prototype = new Father();
 Son.prototype.constructor = Son;
 
 var son = new Son();
-console.log(son.name)
+// console.log(son.name)
 
