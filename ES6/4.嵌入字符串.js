@@ -1,6 +1,6 @@
-let name='Max'
-let mystyle1='你好，${name}！'
-let mystyle2=`你好，${name}！再见。`
+let name1='Max'
+let mystyle1='你好，${name1}！'
+let mystyle2=`你好，${name1}！再见。`
 
 console.log(mystyle1);
 console.log(mystyle2);
@@ -11,17 +11,4 @@ function t(formats,...args) {
     console.log(args);
 }
 
-t`你好，${name}！再见。`
-console.log('1') 
-console.log('1') 
-console.log('1') 
-console.log('1') 
-console.log('1') 
-console.log('1') console.log('1') 
-console.log('1') 
-console.log('1') 
-
-console.log('1') 
-console.log('1') 
-console.log('1') 
-console.log('1') 
+t`你好，${name1}！再见。`
