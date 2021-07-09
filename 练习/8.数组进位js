@@ -4,6 +4,7 @@ function ifBack(str) {
 var str = '1233321';
 console.log(ifBack(str));
 
+
 // [4,2,6] [7,4,1,8,9,2] 输出[1,7,7,8,9,2]
 
 function addArr(arr1,arr2) {

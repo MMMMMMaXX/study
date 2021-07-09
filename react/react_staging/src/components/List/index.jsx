@@ -25,6 +25,7 @@ export default class List extends Component {
     }
 
     componentWillUnmount() {
+        // @ts-ignore
         PubSub.unsubscribe(this.token);
     }
 

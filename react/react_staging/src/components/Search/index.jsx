@@ -40,6 +40,7 @@ export default class Search extends Component {
         }
     }
 
+  
     search = async () => {
         console.log('Search组件发布消息了');
         // 获取用户的输入
