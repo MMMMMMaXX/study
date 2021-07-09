@@ -28,6 +28,7 @@ export default class List extends Component {
         PubSub.unsubscribe(this.token);
     }
 
+    
     render() {
         const { users, isFirst, isLoading, err } = this.state
         return (
