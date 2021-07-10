@@ -56,7 +56,6 @@ export default class Search extends Component {
         } else {
             // 发送网络请求
 
-
             // #region 使用axios发送
             /* axios.get(`http://localhost:3000/api1/search/users?q=${keyWord}`).then(
                 response => {
@@ -123,3 +122,9 @@ export default class Search extends Component {
         )
     }
 }
+
+
+
+
+
+
