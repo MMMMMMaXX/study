@@ -3,3 +3,8 @@ function getMaxP(arr) {
 }
 var arr = [10, 5, 11, 7, 8, 9]
 console.log(getMaxP(arr));
+
+
+
+
+
