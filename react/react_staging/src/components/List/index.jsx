@@ -3,7 +3,6 @@ import PubSub from 'pubsub-js'
 import './index.css'
 
 export default class List extends Component {
-
     // 初始化状态，users初始值为数组
     state = {
         users: [], //users初始值为数组
