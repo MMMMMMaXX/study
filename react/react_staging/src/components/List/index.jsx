@@ -43,10 +43,10 @@ export default class List extends Component {
                                 <a rel="noreferrer" href={userObj.html_url} target="_blank">
                                     <img alt="head_portrait" src={userObj.avatar_url} style={{ width: '100px' }} />
                                 </a>
-                                                <p className="card-text">{userObj.login}</p>
-                                            </div>
-                                        )
-                                    })
+                                <p className="card-text">{userObj.login}</p>
+                            </div>
+                        )
+                    })
                 }
             </div>
         )
