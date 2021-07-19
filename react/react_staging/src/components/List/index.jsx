@@ -36,7 +36,7 @@ export default class List extends Component {
                     isFirst ? <h3>欢迎使用，输入关键字，随后回车或点击搜索</h3> :
                     isLoading ? <h3>Loading...</h3> :
                     err ? <h1 style={{ color: 'red' }}>{err}</h1> :
-                                users.length === 0 ? <h3>没有找到和关键词相关用户~</h3> :
+                    users.length === 0 ? <h3>没有找到和关键词相关用户~</h3> :
                                     users.map((userObj) => {
                                         return (
                                             <div key={userObj.id} className="card">
