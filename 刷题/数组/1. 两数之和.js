@@ -7,7 +7,7 @@ var twoSum = function(nums, target) {
     var numsObj1 = {};
     var numsObj2 = {};
     var res = [];
-    for(val in nums) {
+    for(var val in nums) {
         if(numsObj1[nums[val]]) {
             numsObj2[nums[val]] = val;
         } else {
