@@ -14,7 +14,14 @@ int main()
 			if(sum>num)
 				break;
 		}
-		
+		for(j=0;j<i;j++)
+		{
+			for(k=j;k>0;k--)
+				printf(" ");
+			for(m=2*(i-j)-1;m>0;m--)
+				printf("%c",zf);
+			printf("\n");
+		}
 		for(p=1;p<i;p++)
 		{
 			for(q=i-p-1;q>0;q--)
