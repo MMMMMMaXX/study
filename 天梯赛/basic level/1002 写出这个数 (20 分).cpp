@@ -56,6 +56,7 @@ int main()
         default:
             break;
         }
+        flage = 1;
     }
     return 0;
 }
