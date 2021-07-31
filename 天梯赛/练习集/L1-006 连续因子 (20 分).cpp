@@ -6,7 +6,6 @@ int main()
     scanf("%d", &num);
     x = sqrt(num) + 1;
     //	printf("x=%d\n",x);
-
     for (i = x; i > 1; i--)
     {
         if (num % i == 0)
@@ -29,7 +28,6 @@ int main()
                         end = j + 1;
                         //	printf("begain:%d,end:%d,count=%d,max=%d\n",begain,end,count,max);
                     }
-
                     count = 0;
                     a = -1;
                     temp = 1;
@@ -64,6 +62,5 @@ int main()
     {
         printf("1\n%d", num);
     }
-
     return 0;
 }
