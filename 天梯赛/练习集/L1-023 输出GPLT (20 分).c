@@ -24,7 +24,7 @@ int main()
 		else if(shuz[d]=='t'||shuz[d]=='T')
 		{
 			t++;	
-		}a++;b++;c++;d++;
+		}
 	}
 	while(1)
 	{
