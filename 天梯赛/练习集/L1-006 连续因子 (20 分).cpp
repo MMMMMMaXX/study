@@ -5,7 +5,6 @@ int main()
     int num, x, a = -1, count = 0, max = 0, end, begain, i, j, k, temp = 1;
     scanf("%d", &num);
     x = sqrt(num) + 1;
-    //	printf("x=%d\n",x);
     for (i = x; i > 1; i--)
     {
         if (num % i == 0)
