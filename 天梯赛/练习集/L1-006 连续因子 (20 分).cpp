@@ -25,7 +25,6 @@ int main()
                         max = count;
                         begain = a;
                         end = j + 1;
-                        //	printf("begain:%d,end:%d,count=%d,max=%d\n",begain,end,count,max);
                     }
                     count = 0;
                     a = -1;
