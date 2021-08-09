@@ -1,0 +1,59 @@
+< !DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+
+    <body>
+        <script>
+            // pending
+            const promise1 = new Promise((resolve, reject) => {
+
+            });
+            console.log('promise1', promise1);
+
+            // fulfilled
+            const promise2 = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve();
+                    console.log('promise2：', promise2);
+                });
+            })
+
+            // rejected
+            const promise3 = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    reject();
+                    console.log('promise3：', promise3);
+                });
+            })
+
+            // 改变promise状态
+            const promise4 = Promise.resolve('promise4 data');
+            console.log('promise4', promise4);
+
+            const promise5 = Promise.reject('promise5 error');
+            console.log('promise5', promise5);
+
+            // 现象
+            const promise6 = Promise.resolve('promise6 data');
+            promise6.then(data1 => {
+                console.log('data1', data1);
+            }).catch(err1 => {
+                console.log('error1', err1);
+            })
+
+            const promise7 = Promise.reject('promise7 error');
+            promise7.then(data2 => {
+                console.log('data2', data2);
+            }).catch(err2 => {
+                console.log('error2', err2);
+            })
+        </script>
+    </body>
+
+    </html>
