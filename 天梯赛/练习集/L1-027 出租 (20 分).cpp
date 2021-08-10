@@ -14,7 +14,6 @@ int  main()
 	printf("int[] arr = new int[]{");
 	for(j=9;j>=0;j--)
 	{
-		
 		if(sz[j]==-1)
 		{
 			if(flage0==1)
