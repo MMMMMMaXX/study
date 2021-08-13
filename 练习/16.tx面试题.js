@@ -11,4 +11,3 @@ Promise {<pending>}
 a
 b
  */
-
