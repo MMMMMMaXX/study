@@ -9,7 +9,6 @@ int main()
 	getchar();
 	getline(cin,a);
 	int str=a.length();
-//	int str=strlen(a);
 	if(str>num)
 	{
 		for(i=str-num;i<str;i++)
@@ -26,11 +25,9 @@ int main()
 				printf("%c",zf);
 				n++;
 			}
-				
 			else
 				printf("%c",a[i-n]);
 		}	
 	}
-	
 	return 0;
 }
