@@ -4,4 +4,5 @@ function Foo() {}
 var t = new Foo()
 t.a
 t.b
-console.log(t.a, t.b);
+console.log(t.a);
+console.log(t.b);
