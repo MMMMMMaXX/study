@@ -48,7 +48,5 @@ int main()
     {
         printf("All passed");
     }
-    //	printf("%d",'0');48
-
     return 0;
 }
