@@ -14,8 +14,6 @@ sayName.call(p);
 
 
 
-
-
 //https://github.com/mqyqingfeng/Blog
 
 
