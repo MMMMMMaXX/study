@@ -1,12 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .box {
+            position: absolute;
+            top: 100px;
+            left: 100px;
+            padding: 5px 10px;
+        }
+
+        .box::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            box-sizing: border-box;
+            width: 200%;
+            height: 200%;
+            border: 1px solid lightcoral;
+            transform-origin: 0 0;
+            transform: scale(.5, .5);
+        }
+    </style>
 </head>
+
 <body>
-    
+    <!-- 0.5px边框：设置一个两倍大伪元素，伪元素设置1px边框，再使用transform: scale(.5, .5)进行缩放，设置transform-origin: 0 0以左上角缩放 -->
+    <div class="box">
+        小于1px的边框
+    </div>
 </body>
+
 </html>
