@@ -13,10 +13,11 @@ var lengthOfLongestSubstring = function(s) {
             temp.shift();
             // console.log(temp);
             i--;
-            continue;
+            // continue;
         }
         res = Math.max(res, temp.length);
+        console.log(temp, res);
     }
     return res;
 };
-console.log(lengthOfLongestSubstring('qwertqqq123'));
+console.log(lengthOfLongestSubstring('abcbcde'));
