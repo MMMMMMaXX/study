@@ -119,7 +119,8 @@ function dfsBack1(node) {
             continue;
         }
         node = stack.pop(); // 该结点无左右子树时，从栈中取出一个结点，访问(并清理标记)
-        node.touched && delete node.touched; // 可以不清理不影响结果 只是第二次对同一颗树再执行该后序遍历方法时，结果就会出错啦因为你对这棵树做的标记还留在这棵树上
+        // 可以不清理不影响结果 只是第二次对同一颗树再执行该后序遍历方法时，结果就会出错啦因为你对这棵树做的标记还留在这棵树上
+        node.touched && delete node.touched; 
         result.push(node.value);
         node = stack.length ? stack[stack.length - 1] : null;
         //node = stack.pop(); 这时当前结点不再从栈中取（弹出），而是不改变栈数据直接访问栈中最后一个结点
@@ -127,7 +128,6 @@ function dfsBack1(node) {
     }
     return result; // 返回值
 }
-
 dfsBack1(tree);
 
 // 层序 递归
@@ -161,5 +161,4 @@ function bfs1(node) {
     }
     return result;
 }
-
 bfs1(tree);
