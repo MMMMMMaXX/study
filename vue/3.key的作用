@@ -4,7 +4,6 @@ patch过程中会执行patchvnode，patchvnode中会执行updateChildren方法�
 在过程中通过key就能判断在循环的这两个元素节点是不是相同节点
 如果没有key永远都认为是两个相同节点，会一直更新，会多做很多DOM操作
 
-
 key的作用主要是为了高效的更新虚拟DOM，
 其原理是vue在patch过程中通过key可以精准判断两个节点是否是同一个，从而避免频繁更新不同元素，
 使得整个patch过程更加高效，减少DOM操作量，提高性能
