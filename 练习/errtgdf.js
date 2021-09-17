@@ -1,9 +1,12 @@
 function fn(){
+    
+    var read_line = require('readline');
     let inn = '';
     let s,e; 
     inn = 'IBIPBPIPPPP';
     s=0;
     e=10;
+    inn = read_line();
     let res = [];
     for(let i=s;i<s+e;i++){
         if(inn[i]==='I'&&res.length===0){
