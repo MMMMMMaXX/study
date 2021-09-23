@@ -18,6 +18,6 @@ var lengthOfLongestSubstring = function(s) {
         res = Math.max(res, temp.length);
         console.log(temp, res);
     }
-    return res;
+    return temp.join('');
 };
-console.log(lengthOfLongestSubstring('abcbcde'));
+console.log(lengthOfLongestSubstring('wertyrttyt'));
