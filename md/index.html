@@ -1,41 +1,47 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8" />
-		<title></title>
-		<style>
-            * {
-                margin: 0 !important;
-            }
-			img {
-				width: 100vw;
-				height: 100vh;
-                float: left;
-			}
-            .day1 {
-                font-size: 4vw;
-                top: 10vh;
-                color: rgb(104, 104, 104);
-            }
-            .day2 {
-                font-size: 4vw;
-                top: 12vh;
-                color: rgb(104, 104, 104);
-            }
-		</style>
-		
-	</head>
-	<body>
-        <div style="display: flex; align-items: center; flex-direction: column;">
-            <div class="day1" style="position: absolute;">2021年09月30日</div>
-        </div>
-        <div style="display: flex; align-items: center; flex-direction: column;">
-            <div id="nowDate" class="day2" style="position: absolute;"></div>
-        </div>
-		<img id="img1" src="" alt="" class="img"/>
-        
-        <div></div>
-	</body>
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        * {
+            margin: 0 !important;
+        }
+
+        img {
+            width: 100vw;
+            height: 100.2vh;
+            float: left;
+        }
+
+        .day1 {
+            font-size: 4vw;
+            top: 40vh;
+            color: rgb(104, 104, 104);
+        }
+
+        .day2 {
+            font-size: 4vw;
+            top: 43vh;
+            color: rgb(104, 104, 104);
+        }
+    </style>
+
+</head>
+
+<body>
+    <div style="height: 30vh; background-color:  white; margin: 0;"></div>
+    <div style="display: flex; align-items: center; flex-direction: column;">
+        <div class="day1" style="position: absolute;">2021年09月30日</div>
+    </div>
+    <div style="display: flex; align-items: center; flex-direction: column;">
+        <div id="nowDate" class="day2" style="position: absolute;"></div>
+    </div>
+    <img id="img1" src="" alt="" class="img" />
+
+    <div></div>
+</body>
 
 </html>
 
@@ -58,5 +64,5 @@
             document.getElementById('nowDate').innerHTML = res;
         }, 300)
     })()
-    
+
 </script>
