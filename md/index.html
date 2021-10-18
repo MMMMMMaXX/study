@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        * {
+            margin: 0 !important;
+        }
+
+        img {
+            width: 100vw;
+            height: 100.2vh;
+            float: left;
+        }
+
+        .day1 {
+            font-size: 4vw;
+            top: 40vh;
+            color: rgb(104, 104, 104);
+        }
+
+        .day2 {
+            font-size: 4vw;
+            top: 43vh;
+            color: rgb(104, 104, 104);
+        }
+    </style>
+
+</head>
+
+<body>
+    <div style="height: 30vh; background-color:  white; margin: 0;"></div>
+    <div style="display: flex; align-items: center; flex-direction: column;">
+        <div class="day1" style="position: absolute;">2021年09月30日</div>
+    </div>
+    <div style="display: flex; align-items: center; flex-direction: column;">
+        <div id="nowDate" class="day2" style="position: absolute;"></div>
+    </div>
+    <img id="img1" src="" alt="" class="img" />
+
+    <div></div>
+</body>
+
+</html>
+
+<script>
+    let data = new Date();
+    console.log(data.getFullYear() + '年' + data.getMonth() + '月' + data.getDate() + '日');
+    console.log(data.toLocaleTimeString());
+    (function () {
+        let time = 0;
+        setInterval(() => {
+            time++;
+            document.getElementById('img1').src = `./${time % 2}.jpg`;
+            let nowTime = new Date();
+            let res = '';
+            res += nowTime.getHours() > 9 ? String(nowTime.getHours()) : '0' + String(nowTime.getHours());
+            res += ':'
+            res += nowTime.getMinutes() > 9 ? String(nowTime.getMinutes()) : '0' + String(nowTime.getMinutes());
+            res += ':'
+            res += nowTime.getSeconds() > 9 ? String(nowTime.getSeconds()) : '0' + String(nowTime.getSeconds());
+            document.getElementById('nowDate').innerHTML = res;
+        }, 300)
+    })()
+
+</script>

@@ -21,8 +21,10 @@
         }
         // 它相当于完全删除了prototype 对象原先的值，然后赋予一个新值。
         Child.prototype = new Parent()
-        // 如果没有"Child.prototype = new Parent()"这一行，Child.prototype.constructor是指向Child的；加了这一行以后，Child.prototype.constructor指向Parent。
-        // 这显然会导致继承链的紊乱（child1，child2明明是用构造函数Child生成的），因此我们必须手动纠正，将Child.prototype对象的constructor值改为Child。
+        // 如果没有"Child.prototype = new Parent()"这一行，Child.prototype.constructor是指向Child的；
+        // 加了这一行以后，Child.prototype.constructor指向Parent。
+        // 这显然会导致继承链的紊乱（child1，child2明明是用构造函数Child生成的），
+        // 因此我们必须手动纠正，将Child.prototype对象的constructor值改为Child。
         // http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_inheritance.html
         Child.prototype.constructor = Child
         const child1 = new Child()
