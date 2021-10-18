@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0
+    }
+ 
+    .detail {
+        /* 因为是遮罩效果所以要fixed */
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 100;
+        width: 100%;
+        background: rgba(7, 17, 27, .8);
+        /*必须 */
+        display: flex;
+        /* 必须，规定元素的排列方向 */
+        flex-direction: column;
+        /* 必须占满屏 */
+        height: 100%;
+        /* 没有这个就不能滚动了 */
+        overflow: auto;
+    }
+ 
+    .detail-header {
+        width: 100%;
+        height: 100px;
+        text-align: center;
+        /* background: #a3e; */
+    }
+ 
+    .detail-wrapper {
+        width: 100%;
+        /* 占了百分百-flex:0的占位 */
+        flex: 1;
+        /* background: #143541; */
+        font-size: 40px;
+        text-align: center;
+    }
+ 
+    .detail-close {
+        /* 占位用 */
+        flex: 0;
+        margin: 0 auto;
+        /* background: #555555; */
+    }
+</style>
+ 
+<body>
+    <div class="detail">
+        <div class="detail-header">
+            我是头部
+        </div>
+        <div class="detail-wrapper">
+            我是内容
+            <br/> 我是内容
+            <br/> 我是内容
+            <br/> 我是内容
+            <br/> 我是内容
+            <br/> 我是内容
+            <br/> 我是内容
+            <br/> 我是内容
+            <br/> 我是内容
+            <br/> 我是内容
+            <br/> 我是内容
+            <br/> 我是内容
+            <br/> 我是内容
+            <br/> 我是内容
+            <br/> 我是内容
+            <br/> 我是内容
+            <br/> 我是内容
+            <br/>
+        </div>
+        <div class="detail-close">
+            我是底部
+        </div>
+    </div>
+</body>
+ 
+</html>
