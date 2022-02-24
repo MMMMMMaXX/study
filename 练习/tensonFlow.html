@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/qna"></script>
+</head>
+<body>
+    <script>
+        const searchText = ['张三15岁，李四20岁，王五25岁'];
+        const question = ['谁20岁'];
+        console.log(qna);
+
+        qna.load().then(model => {
+            model.findAnswers(question[0], searchText[0]).then(answers => {
+                console.log('Answers:', answers);
+            })
+        })
+    </script>
+</body>
+</html>
