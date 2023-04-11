@@ -40,3 +40,4 @@
     return sum;
 };
 console.log(sumOfBeauties([2, 4, 6, 5, 3, 7, 9]));
+
